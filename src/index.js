@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import ErrorPage from "./Components/ErrorPage"
 import ProductList from "./Components/ProductList"
+import { Product } from './types';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -19,8 +20,9 @@ const router = createBrowserRouter([
     element: <ProductList/>,
     loader: async () => {
       let response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/products`)
-      console.log(response.data)
-    }
+      return response.data
+    },
+    errorElement: <ErrorPage/>,
   },
 ]);
 

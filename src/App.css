@@ -1,6 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
 .error-page-container {
   display: flex;
   justify-content: center;

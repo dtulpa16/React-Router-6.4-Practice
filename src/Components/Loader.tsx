@@ -1,7 +1,6 @@
-import { useNavigate } from "react-router-dom";
-import "./App.css";
-export default function App() {
-  const navigate = useNavigate();
+import React from 'react'
+
+export default function Loader() {
   return (
     <div
       className="hero min-h-screen"
@@ -13,13 +12,9 @@ export default function App() {
       <div className="hero-overlay bg-opacity-60"></div>
       <div className="hero-content text-center text-neutral-content">
         <div className="max-w-md">
-          <h1 className="mb-5 text-5xl font-bold">Hello there</h1>
-          <p className="mb-5">
-            Welcome to my eCommerce site!
-          </p>
-          <button onClick={()=>navigate("/products")} className="btn btn-primary">View Products</button>
+          <h1 className="mb-5 text-5xl font-bold">Loading <span className="loading loading-spinner text-accent"></span></h1>
         </div>
       </div>
     </div>
-  );
+  )
 }
