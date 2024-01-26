@@ -23,6 +23,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["react-env.d.ts", "**/*.ts", "**/*.tsx", ".react/types/**/*.ts"],
+  "include": ["react-env.d.ts", "**/*.ts", "**/*.tsx", ".react/types/**/*.ts", "src/index.js"],
   "exclude": ["node_modules"]
 }

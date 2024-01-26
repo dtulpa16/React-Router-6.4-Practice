@@ -7,14 +7,20 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import ErrorPage from "./Components/ErrorPage"
+import ProductList from "./Components/ProductList"
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App/>,
+    errorElement: <ErrorPage/>
+  },
+  {
+    path: "/products",
+    element: <ProductList/>,
     loader: async () => {
-      let response = await axios.get(`${process.env.REACT_APP_BASE_URL}`)
-    },
-    errorElement:<ErrorPage/>
+      let response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/products`)
+      console.log(response.data)
+    }
   },
 ]);
 
