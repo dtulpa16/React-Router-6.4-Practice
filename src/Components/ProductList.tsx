@@ -5,7 +5,6 @@ import ProductCard from "./ProductCard";
 export default function ProductList() {
   const data = useLoaderData();
   const products = data as Product[];
-  console.log("Products", products);
   return (
     <div
       className="w-full bg-cover bg-center min-h-screen flex items-center justify-center"

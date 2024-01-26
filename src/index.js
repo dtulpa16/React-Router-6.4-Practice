@@ -10,37 +10,46 @@ import ErrorPage from "./Components/ErrorPage"
 import ProductList from "./Components/ProductList"
 import { Product } from './types';
 import ProductDetailsPage from './Components/ProductDetailsPage';
+import Navbar from './Components/Navbar';
+import Main from './Components/Main';
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App/>,
-    errorElement: <ErrorPage/>
-  },
-  {
-    path: "/products",
-    element: <ProductList/>,
-    loader: async () => {
-      let response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/products`)
-      return response.data
-    },
     errorElement: <ErrorPage/>,
-    children: [
+    children:[
       {
-        element: <ProductDetailsPage />,
-        path: ":productId",
-        loader: async ({ params }) => {
-          let response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/products/${params.productId}/`)
+        path: "",
+        element: <Main/>,
+      },
+      {
+        path: "products",
+        element: <ProductList/>,
+        loader: async () => {
+          let response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/products`)
           return response.data
         },
+        errorElement: <ErrorPage/>,
       },
-    ],
+      {
+        path: "products/:productId",
+        element: <ProductDetailsPage />,
+        loader: async ({ params }) => {
+          let response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/products/${params.productId}/`)
+          console.log(response.data)
+          return response.data
+        },
+        errorElement: <ErrorPage/>,
+      },
+    ]
   },
+  
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <RouterProvider router={router}/>
   </React.StrictMode>
 );
 
