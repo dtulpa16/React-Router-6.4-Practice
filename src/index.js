@@ -9,6 +9,7 @@ import {
 import ErrorPage from "./Components/ErrorPage"
 import ProductList from "./Components/ProductList"
 import { Product } from './types';
+import ProductDetailsPage from './Components/ProductDetailsPage';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -23,6 +24,16 @@ const router = createBrowserRouter([
       return response.data
     },
     errorElement: <ErrorPage/>,
+    children: [
+      {
+        element: <ProductDetailsPage />,
+        path: ":productId",
+        loader: async ({ params }) => {
+          let response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/products/${params.productId}/`)
+          return response.data
+        },
+      },
+    ],
   },
 ]);
 
